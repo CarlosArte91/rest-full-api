@@ -1,6 +1,7 @@
 package com.ccruz.restfullapi.service;
 
 import com.ccruz.restfullapi.entity.Store;
+import com.ccruz.restfullapi.error.StoreNotFoundException;
 import com.ccruz.restfullapi.repository.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -61,5 +62,15 @@ public class StoreServiceImpl implements StoreService {
     @Override
     public Optional<Store> findByNameIgnoreCase(String name) {
         return storeRepository.findByNameIgnoreCase(name);
+    }
+
+    @Override
+    public Store findById(Long id) throws StoreNotFoundException {
+        Optional<Store> store = storeRepository.findById(id);
+
+        if (!store.isPresent()) {
+            throw new StoreNotFoundException("Store is not available");
+        }
+        return store.get();
     }
 }
