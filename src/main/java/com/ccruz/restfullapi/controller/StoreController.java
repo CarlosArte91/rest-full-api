@@ -1,6 +1,7 @@
 package com.ccruz.restfullapi.controller;
 
 import com.ccruz.restfullapi.entity.Store;
+import com.ccruz.restfullapi.error.StoreNotFoundException;
 import com.ccruz.restfullapi.service.StoreService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +27,11 @@ public class StoreController {
     @GetMapping("/store/ignore_case/{name}")
     public Optional<Store> findByNameIgnoreCase(@PathVariable String name) {
         return storeService.findByNameIgnoreCase(name);
+    }
+
+    @GetMapping("/store/by_id/{id}")
+    public Store findById(@PathVariable Long id) throws StoreNotFoundException {
+        return storeService.findById(id);
     }
 
     @PostMapping("/store")

@@ -1,6 +1,7 @@
 package com.ccruz.restfullapi.service;
 
 import com.ccruz.restfullapi.entity.Store;
+import com.ccruz.restfullapi.error.StoreNotFoundException;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,4 +14,5 @@ public interface StoreService {
     Optional<Store> findStoreByName(String name);
     Optional<Store> findByName(String name);
     Optional<Store> findByNameIgnoreCase(String name);
+    Store findById(Long id) throws StoreNotFoundException;
 }
