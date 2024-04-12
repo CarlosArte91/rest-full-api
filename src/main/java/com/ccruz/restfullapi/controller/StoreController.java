@@ -3,6 +3,7 @@ package com.ccruz.restfullapi.controller;
 import com.ccruz.restfullapi.entity.Store;
 import com.ccruz.restfullapi.error.StoreNotFoundException;
 import com.ccruz.restfullapi.service.StoreService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -35,7 +36,7 @@ public class StoreController {
     }
 
     @PostMapping("/store")
-    public Store saveStore(@RequestBody Store store) {
+    public Store saveStore(@Valid @RequestBody Store store) {
         return storeService.saveStore(store);
     }
 
